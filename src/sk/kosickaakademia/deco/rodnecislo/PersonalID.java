@@ -18,10 +18,12 @@ public class PersonalID {
         if (cDigits!=10 && cDigits!=9)
             return false;
 
-        if (s.length()==11 && (s.charAt(6)!='/' || cDigits==10))
+        if (s.length()==11 && (s.charAt(6)!='/' || cDigits!=10))
             return false;
 
-        if (s.length()==10 && (s.charAt(6)!='/' || cDigits==9))
+        if (s.length()==10 && s.charAt(6)!='/' && cDigits==9)
+            return false;
+        if (s.charAt(2)!='5' && s.charAt(2)!='6' && s.charAt(2)!='0' &&s.charAt(2)!='1')
             return false;
 
         if (cDigits==9)
@@ -32,10 +34,10 @@ public class PersonalID {
 
         System.out.println(s);
         long id=Long.parseLong(s);
-        if (id%11!=0){
+        /*if (id%11!=0){
             System.out.println("Invalid personal ID detected.");
             return false;
-        }
+        }*/
 
 
         int day, year, month;
@@ -43,12 +45,22 @@ public class PersonalID {
         month=Integer.parseInt(s.substring(2,4));
         year=Integer.parseInt(s.substring(0,2));
         year+=2000;
-        int yearNow= Calendar.YEAR;
+        int yearNow = Calendar.getInstance().get(Calendar.YEAR);
         if (year>yearNow)
             year-=100;
 
+
+        //kontrola celeho datumu
+        Calendar then=Calendar.getInstance();
+        then.set(year,month,day);
+        then.setLenient(false);
+        try{
+            then.getTime();
+        }catch (Exception e){
+            return false;
+        }
+
         System.out.println(day+"-"+month+"-"+year);
-        //todo kontrola datumu narodenia Du
 
         return true;
     }
