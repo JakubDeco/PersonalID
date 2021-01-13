@@ -58,7 +58,7 @@ public class PersonalID {
         Calendar then=Calendar.getInstance();
         Calendar today=Calendar.getInstance();
         SimpleDateFormat sdf=new SimpleDateFormat("EEEE MMM dd yyyy");
-        then.set(year,month,day);
+        then.set(year,month-1,day);
         then.setLenient(false);
         try{
             //System.out.println(days[then.get(Calendar.DAY_OF_WEEK)-1]);
@@ -72,14 +72,18 @@ public class PersonalID {
         int dayDiff= (int) Math.abs(TimeUnit.DAYS.convert(diffMillis,TimeUnit.MILLISECONDS));
         System.out.println(dayDiff+" days from your birth");
 
+        //calculating time till retirement
         Calendar retirement=Calendar.getInstance();
-        retirement.set(year+62,month,day);
-        //todo if (retirement.before())
-        /*
+        retirement.set(year+62,month-1,day);
+        long retireMillis = retirement.getTimeInMillis() - today.getTimeInMillis();
+        int dayDiffRetire= (int) TimeUnit.DAYS.convert(retireMillis,TimeUnit.MILLISECONDS);
+        if (dayDiffRetire>365)
+            System.out.println("you can retire in "+retirement.get(Calendar.YEAR));
+        if (dayDiffRetire<0)
+            System.out.println("you can retire");
+        if (dayDiffRetire<365 && dayDiffRetire>=0)
+            System.out.println("you can retire this year");
 
-        DOPLNKOVA ULOHA PRE SIKOVNYCH:
-        zistite si priblizne kedy sa v dnesnej dobe chodi do dochodku a vypiste kedy dana osoba
-        ma ist do dochodku*/
 
         System.out.println(day+"-"+month+"-"+year);
 
