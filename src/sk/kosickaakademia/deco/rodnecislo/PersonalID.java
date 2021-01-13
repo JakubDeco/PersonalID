@@ -1,7 +1,9 @@
 package sk.kosickaakademia.deco.rodnecislo;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class PersonalID {
     private String id="";
@@ -34,10 +36,10 @@ public class PersonalID {
 
         System.out.println(s);
         long id=Long.parseLong(s);
-        /*if (id%11!=0){
+        if (id%11!=0){
             System.out.println("Invalid personal ID detected.");
             return false;
-        }*/
+        }
 
 
         int day, year, month;
@@ -51,14 +53,33 @@ public class PersonalID {
 
 
         //kontrola celeho datumu
+        /*String[] days = new String[] { "Sunday", "Monday",
+                "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };*/
         Calendar then=Calendar.getInstance();
+        Calendar today=Calendar.getInstance();
+        SimpleDateFormat sdf=new SimpleDateFormat("EEEE MMM dd yyyy");
         then.set(year,month,day);
         then.setLenient(false);
         try{
-            then.getTime();
+            //System.out.println(days[then.get(Calendar.DAY_OF_WEEK)-1]);
+            System.out.println(sdf.format(then.getTime()));
         }catch (Exception e){
             return false;
         }
+
+        //calculating number of days from birth
+        long diffMillis = then.getTimeInMillis() - today.getTimeInMillis();
+        int dayDiff= (int) Math.abs(TimeUnit.DAYS.convert(diffMillis,TimeUnit.MILLISECONDS));
+        System.out.println(dayDiff+" days from your birth");
+
+        Calendar retirement=Calendar.getInstance();
+        retirement.set(year+62,month,day);
+        //todo if (retirement.before())
+        /*
+
+        DOPLNKOVA ULOHA PRE SIKOVNYCH:
+        zistite si priblizne kedy sa v dnesnej dobe chodi do dochodku a vypiste kedy dana osoba
+        ma ist do dochodku*/
 
         System.out.println(day+"-"+month+"-"+year);
 
