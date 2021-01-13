@@ -2,11 +2,9 @@ package sk.kosickaakademia.deco.rodnecislo;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class PersonalID {
-    private String id="";
 
     public boolean checkID(String s){
         if (s.length()<9 || s.length()>11) return false;
