@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class PersonalID {
 
     public boolean checkID(String s){
+        //todo make unittest
         if (s.length()<9 || s.length()>11) return false;
 
         int cDigits=0;

@@ -36,8 +36,8 @@ class TaskTest {
         Task task=new Task();
         assertTrue(task.isRectangular(3,4,5));
         assertTrue(task.isRectangular(4,5,3));
-        assertTrue(task.isRectangular(20,40,52));
 
+        assertFalse(task.isRectangular(20,40,52));
         assertFalse(task.isRectangular(0,0,0));
         assertFalse(task.isRectangular(-1,2,3));
         assertFalse(task.isRectangular(4,5,6));
@@ -54,5 +54,39 @@ class TaskTest {
         assertEquals("",task.reverse(""));
         assertEquals("  trIs",task.reverse("sIrt  "));
         assertEquals("",task.reverse(""));
+    }
+
+    @Test
+    void findIt() {
+        Task task=new Task();
+        int[] arr1={1,2,2,1,2,1,1};
+        assertEquals(2,task.findIt(arr1));
+        int[] arr2={0,6,-99,6,0};
+        assertEquals(-99,task.findIt(arr2));
+        int[] arr3={80,80,-365,78,1234567890,78,-365};
+        assertEquals(1234567890,task.findIt(arr3));
+    }
+
+    @Test
+    void maskify() {
+        Task task=new Task();
+        assertEquals("",task.maskify(""));
+        assertEquals("#9327",task.maskify("09327"));
+        assertEquals("",task.maskify(""));
+        assertEquals("KLmO",task.maskify("KLmO"));
+        assertEquals("########pets",task.maskify("ante/*{]pets"));
+        assertEquals("abc",task.maskify("abc"));
+        assertNull(task.maskify(null));
+    }
+
+    @Test
+    void getMiddle() {
+        Task task=new Task();
+        assertEquals("",task.maskify(""));
+        assertNull(task.maskify(null));
+        assertEquals("t",task.getMiddle("matka"));
+        assertEquals("h",task.getMiddle("  hot"));
+        assertEquals("Ue",task.getMiddle("TrUest"));
+
     }
 }
