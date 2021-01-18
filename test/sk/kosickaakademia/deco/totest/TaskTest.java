@@ -147,4 +147,22 @@ class TaskTest {
         assertFalse(task.isPalindrom(36789124));
         assertFalse(task.isPalindrom(-121));
     }
+
+    @Test
+    void breakCamelCase() {
+        assertEquals("camel Case",task.breakCamelCase("camelCase"));
+        assertEquals("Camel Case",task.breakCamelCase("CamelCase"));
+        assertEquals("Camelcase",task.breakCamelCase("Camelcase"));
+        assertEquals("camelcase",task.breakCamelCase("camelcase"));
+        assertEquals("camel Case Is Working Breaking",task.breakCamelCase("camelCaseIsWorkingBreaking"));
+        assertEquals("",task.breakCamelCase(""));
+        assertEquals("a",task.breakCamelCase("a"));
+        assertEquals("A",task.breakCamelCase("A"));
+        assertEquals("A B",task.breakCamelCase("AB"));
+        assertNull(task.breakCamelCase(null));
+
+        assertEquals("camel Casing", task.breakCamelCase("camelCasing"));
+        assertEquals("camel Casing Test", task.breakCamelCase("camelCasingTest"));
+        assertEquals("camelcasingtest", task.breakCamelCase("camelcasingtest"));
+    }
 }

@@ -1,8 +1,26 @@
 package sk.kosickaakademia.deco.totest;
 
 
+import java.util.ArrayList;
 
 public class Task {
+    public String breakCamelCase(String s){
+        if (s==null) return null;
+        if (s.isEmpty()) return "";
+        if (s.length()==1) return s;
+
+        StringBuilder sb=new StringBuilder(s);
+        char[] arr=s.toCharArray();
+        int offset=0;
+        for (int i = 1; i < arr.length; i++) {
+            if (Character.isUpperCase(arr[i])){
+                sb.insert(i+offset," ");
+                offset++;
+            }
+        }
+        return sb.toString();
+    }
+
     public boolean isPalindrom(int a){
         if (a<0) return false;
         StringBuilder sb=new StringBuilder(Integer.toString(a));
