@@ -1,14 +1,26 @@
 package sk.kosickaakademia.deco.totest;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaskTest {
+    private Task task;
+
+    @BeforeEach
+    void setUp() {
+        task=new Task();
+    }
+
+    @AfterEach
+    void tearDown() {
+        task=null;
+    }
 
     @Test
     void sum() {
-        Task task=new Task();
         assertEquals(0, task.sum(5,-5));
         assertEquals(0, task.sum(9999999,-9999999));
         assertEquals(10, task.sum(5,5));
@@ -18,7 +30,6 @@ class TaskTest {
 
     @Test
     void isPrimeNum() {
-        Task task=new Task();
         assertTrue(task.isPrimeNum(11));
         assertTrue(task.isPrimeNum(7));
         assertTrue(task.isPrimeNum(997));
@@ -33,7 +44,6 @@ class TaskTest {
 
     @Test
     void isRectangular() {
-        Task task=new Task();
         assertTrue(task.isRectangular(3,4,5));
         assertTrue(task.isRectangular(4,5,3));
 
@@ -45,7 +55,6 @@ class TaskTest {
 
     @Test
     void reverse() {
-        Task task=new Task();
         assertNull(task.reverse(null));
         assertEquals("",task.reverse(""));
         assertEquals(" ",task.reverse(" "));
@@ -58,7 +67,6 @@ class TaskTest {
 
     @Test
     void findIt() {
-        Task task=new Task();
         int[] arr1={1,2,2,1,2,1,1};
         assertEquals(2,task.findIt(arr1));
         int[] arr2={0,6,-99,6,0};
@@ -69,7 +77,6 @@ class TaskTest {
 
     @Test
     void maskify() {
-        Task task=new Task();
         assertEquals("",task.maskify(""));
         assertEquals("#9327",task.maskify("09327"));
         assertEquals("",task.maskify(""));
@@ -81,12 +88,41 @@ class TaskTest {
 
     @Test
     void getMiddle() {
-        Task task=new Task();
         assertEquals("",task.maskify(""));
         assertNull(task.maskify(null));
         assertEquals("t",task.getMiddle("matka"));
         assertEquals("h",task.getMiddle("  hot"));
         assertEquals("Ue",task.getMiddle("TrUest"));
 
+    }
+
+    @Test
+    void terminovanyVklad() {
+        assertEquals(1000,task.terminovanyVklad(1000,0,23,false));
+        assertEquals(1800,task.terminovanyVklad(1000,1,80,false));
+
+        assertEquals(1080,task.terminovanyVklad(1000,1,10,true));
+        assertEquals(0,task.terminovanyVklad(-1080,1,10,true));
+
+        assertEquals(1000,task.terminovanyVklad(1000,1,0,true));
+        assertEquals(1728,task.terminovanyVklad(1000,3,20,false));
+
+        assertEquals(0,task.terminovanyVklad(1000,-1,20,false));
+        assertEquals(1728,task.terminovanyVklad(1000,3,20,false));
+    }
+
+    @Test
+    void calcTripPrice() {
+        assertEquals(0,task.calcTripPrice(0,8.5,1.21));
+        assertEquals(0,task.calcTripPrice(-0.1,8.5,1.21));
+
+        assertEquals(98.11,task.calcTripPrice(0.1,399.89,245.33));
+        assertEquals(12.35,task.calcTripPrice(200,5.67,1.089));
+
+        assertEquals(0,task.calcTripPrice(200,-1,1.089));
+        assertEquals(0,task.calcTripPrice(200,5.67,-1));
+
+        assertEquals(0,task.calcTripPrice(200,5.67,0));
+        assertEquals(1879.43,task.calcTripPrice(5784,10.11,3.214));
     }
 }

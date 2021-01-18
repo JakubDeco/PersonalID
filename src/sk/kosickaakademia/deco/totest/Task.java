@@ -3,6 +3,27 @@ package sk.kosickaakademia.deco.totest;
 
 
 public class Task {
+    public double calcTripPrice(double distance, double consumption, double fuelPrice){
+        if (distance<=0 || consumption<=0 || fuelPrice<=0) return 0;
+
+        double result=distance*consumption/100*fuelPrice;
+        return Math.round(result*100)/100.0;
+    }
+
+    public double terminovanyVklad(double value, int years, double interest, boolean tax){
+        if (value<=0 || years<0 ||interest<0)
+            return 0;
+
+        for (int i = 0; i < years; i++) {
+            double profit=value*interest/100;
+            if (tax)
+                value+=profit*0.8;
+            else value+=profit;
+        }
+        double rounded=Math.round(value*100)/100.0;
+        return rounded;
+    }
+    
     /**
      * description: method returns middle character/s of parameter
      * */
