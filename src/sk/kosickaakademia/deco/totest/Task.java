@@ -3,6 +3,32 @@ package sk.kosickaakademia.deco.totest;
 
 
 public class Task {
+    public boolean isPalindrom(int a){
+        if (a<0) return false;
+        StringBuilder sb=new StringBuilder(Integer.toString(a));
+        sb.reverse();
+        return Integer.parseInt(sb.toString()) == a;
+    }
+
+    public int max( int[ ] array ) {
+        if (array.length==0) {
+            return 0;
+        }
+        if (array.length==1) {
+            return array[0];
+        }
+        int result=array[0];
+        for (int temp :
+                array) {
+            if (temp>result) result=temp;
+        }
+        return result;
+        /*
+        PRE LEPSICH: uprava tejto ulohy, metoda max 2, pole vrati 2 najvacsie cislo v poli.
+        ak je pole prazdne, alebo jednoprvkove,
+        alebo su vsetky cisla rovnake, tak druhe najvacsii prvok neexistuje a metoda vrati 0 to do */
+    }
+
     public double calcTripPrice(double distance, double consumption, double fuelPrice){
         if (distance<=0 || consumption<=0 || fuelPrice<=0) return 0;
 

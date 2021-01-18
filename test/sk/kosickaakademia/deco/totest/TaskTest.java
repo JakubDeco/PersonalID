@@ -125,4 +125,26 @@ class TaskTest {
         assertEquals(0,task.calcTripPrice(200,5.67,0));
         assertEquals(1879.43,task.calcTripPrice(5784,10.11,3.214));
     }
+
+    @Test
+    void max() {
+        int[] arr1={};
+        assertEquals(0,task.max(arr1));
+        int[] arr2={-99};
+        assertEquals(-99,task.max(arr2));
+        int[] arr3={1,2,3,4,5,6,7,8,9,8,125,-329,248,10,26,-68,0};
+        assertEquals(248,task.max(arr3));
+    }
+
+    @Test
+    void isPalindrom() {
+        assertTrue(task.isPalindrom(121));
+        assertTrue(task.isPalindrom(0));
+        assertTrue(task.isPalindrom(95159));
+
+        assertFalse(task.isPalindrom(789981));
+        assertFalse(task.isPalindrom(29));
+        assertFalse(task.isPalindrom(36789124));
+        assertFalse(task.isPalindrom(-121));
+    }
 }
